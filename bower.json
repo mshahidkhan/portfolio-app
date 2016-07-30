@@ -1,0 +1,22 @@
+{
+  "name": "portfolio-app",
+  "version": "1.0.0",
+  "homepage": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "iron-icon": "PolymerElements/iron-icon#^1.0.0",
+    "iron-icons": "PolymerElements/iron-icons#^1.0.0",
+    "iron-elements": "^1.0.10",
+    "paper-elements": "^1.0.7",
+    "app-layout": "PolymerElements/app-layout#^0.9.1",
+    "font-awesome": "^4.6.3"
+  }
+}

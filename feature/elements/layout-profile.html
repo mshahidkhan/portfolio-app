@@ -1,0 +1,27 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="layout-profile">
+  <link rel="import" href="../styles/shared-styles.html">
+   <template>
+   <style is="custom-style" include="shared-styles">
+      :host {
+          font-family: 'lato', sans-serif;
+      }
+      #stlbreadcrumb{
+          font-family: 'lato', sans-serif;
+      }
+   </style>
+      <page-content>
+         <div id="homeContent" style="padding-top: 10px; padding-bottom: 10px;"></div>
+      </page-content>
+      <content></content>
+  </template>
+  <script>
+    Polymer({
+        is: 'layout-profile',
+      attached:function(){
+         this.querySelector('#homeContent').appendChild(this.tagMainContent)
+      }
+    })
+  </script>
+</dom-module>
+

@@ -1,0 +1,61 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="./modal-generator.html">
+<link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+
+<dom-module id="profile-personal-details-edit">
+  <template>
+    <style is="custom-style" include="shared-styles">
+      hr.horizontal-line {
+        border: 0;
+        height: 2px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0));
+        margin: 20px 0px 0px 0px;
+      }
+      .title{
+        font-family: 'Mirza';
+        font-size: 24px;
+      }
+     
+    </style>
+    <div class="flex-horizontal">
+      <div class="flexchild title">{{title}} <i class="fa fa-pencil"></i></div>
+    </div>
+    <hr>
+     <div class="form-container">
+        <form class="subsection" name="tmAddEditForm" id="tmAddEditForm">
+            <div class="flex-column-with-ratios">
+              <paper-input label="Username" id="inputWithButton">
+                <iron-icon icon="account-circle" prefix></iron-icon>
+              </paper-input>
+              <paper-input label="Password" type="password">
+                <iron-icon icon="lock" prefix></iron-icon>
+              </paper-input>
+            </div>
+        </form>            
+        <div class="buttons footer">
+          <paper-button raised dialog-confirm autofocus on-click="handleTap" class="special">Login</paper-button>          
+        </div>
+      </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'profile-personal-details-edit',
+      properties: {
+        title: {
+          type: String,
+          notify: true,
+          value: ''
+        }
+        
+      },
+      ready: function(){
+        
+      }
+      
+    });
+  </script>
+</dom-module>

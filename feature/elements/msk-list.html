@@ -1,0 +1,218 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+
+
+<dom-module id="msk-list">
+    <style>
+      :host{
+        display: block;
+      }
+        .msk-section {
+            display: block;
+            z-index: 0;
+            background: #fff;
+            width: 100%;
+            clear: both;
+            padding: 0px 12px 12px 12px;
+        }
+
+        a:link, a:visited {
+            color: #4980c5;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        route-link{
+          font-size: 14px !important;
+          font-weight: 600 !important;
+        }
+        .msk-title {
+            border-bottom: 1px solid #e1e2e5;
+            font-size: 13px;
+        }
+      
+      
+      iron-list {
+        padding-top: 64px;
+        --iron-list-items-container: {
+          max-width: 800px;
+          margin: auto;
+          margin-top: 60px;
+          margin-bottom: 60px;
+          border-bottom: 1px solid #ddd;
+        };
+      }
+      .item {
+        @apply(--layout-horizontal);
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .avatar {
+        height: 40px;
+        width: 40px;
+        border-radius: 20px;
+        box-sizing: border-box;
+        background-color: #DDD;
+      }
+      .pad {
+        padding: 0 16px;
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
+      }
+      .primary {
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .shortText, .longText {
+        font-size: 14px;
+      }
+      .longText {
+        color: gray;
+        display: none;
+      }
+      .item:hover .shortText::after {
+        content: ' [+]';
+        color: gray;
+      }
+      .item.expanded:hover .shortText::after {
+        content: '';
+      }
+      .item.expanded .longText {
+        display: block;
+      }
+      .item.expanded:hover .longText::after {
+        content: ' [–]';
+      }
+      .spacer {
+        @apply(--layout-flex);
+      }
+      @media (max-width: 460px) {
+        paper-toolbar .bottom.title {
+          font-size: 14px;
+        }
+      }
+    </style>
+
+    <template>
+        <div class="msk-section">
+           <iron-list id="list" items="[[tagSections]]" as="item" selection-enabled multi-selection>
+            <template>
+              <div>
+                <div class$="[[getClassForItem(item, selected)]]" tabindex$="[[tabIndex]]">
+                  <iron-image class="avatar" sizing="contain" src="../../images/msk-small.jpg"></iron-image>
+                  <div class="pad">
+                    <div class="primary"><a><route-link route="{{item.route}}">{{item.title}}</route-link></a></div>
+                    <div class="shortText">Short text</div>
+                    <div class="longText">[[item.desc]]</div>
+                  </div>
+                  <iron-icon icon$="[[iconForItem(item)]]"></iron-icon>
+                </div>
+              </div>
+            </template>
+          </iron-list>
+         </div>
+    </template>
+
+
+
+    <script>
+        Polymer({
+            is: "msk-list",
+            properties: {
+                items: {
+                  type: Array
+                }
+            },
+            ready: function () {
+                this.tagSections = [
+                  {
+                      id: 1,
+                      integer: 115,
+                      title: "Standard Tag List",
+                      route: "index",
+                      desc: "Standard Tag List is the collection of all the Standard Tag(s) of all the read types used for multiple devices. These Standard Tag(s) are very helpful, while referencing similar read types across multiple devices with same name. To review and/or update the Standard Tag List, please click the link above."
+
+                  },
+                  {
+                      id: 2,
+                      integer: 5,
+                      title: "Digital Source Tag Map(s)",
+                      route: "dsmVersions",
+                      desc: "Digital Source Tag Map(s) are the maps for each device, to link the read types to the Standard Tags in the Standard Tag List collection. Each device is represented as a RTU map with all the Read types for linked to the Standard Tag List collection. To review and/or update the RTU Tag Map(s), please click the link above."
+
+                  },
+                  {
+                      id: 3,
+                      integer: 52,
+                      title: "Well Template(s)",
+                      route: "wellTemplate",
+                      desc: "Well Template(s) is the set of one or more RTU map(s), which are configured by the App Admin, to simplify the device assignment to the wells. The user will assign/apply the template(s) to the wells, instead of assigning the devices. To review and /or update the Well template(s), please click the link above."
+
+                  },
+                  {
+                      id: 4,
+                      integer: 55,
+                      title: "Standard Tag List",
+                      route: "index",
+                      desc: "Standard Tag List is the collection of all the Standard Tag(s) of all the read types used for multiple devices. These Standard Tag(s) are very helpful, while referencing similar read types across multiple devices with same name. To review and/or update the Standard Tag List, please click the link above."
+
+                  },
+                  {
+                      id: 5,
+                      integer: 15,
+                      title: "Digital Source Tag Map(s)",
+                      route: "dsmVersions",
+                      desc: "Digital Source Tag Map(s) are the maps for each device, to link the read types to the Standard Tags in the Standard Tag List collection. Each device is represented as a RTU map with all the Read types for linked to the Standard Tag List collection. To review and/or update the RTU Tag Map(s), please click the link above."
+
+                  },
+                  {
+                      id: 6,
+                      integer: 35,
+                      title: "Well Template(s)",
+                      route: "wellTemplate",
+                      desc: "Well Template(s) is the set of one or more RTU map(s), which are configured by the App Admin, to simplify the device assignment to the wells. The user will assign/apply the template(s) to the wells, instead of assigning the devices. To review and /or update the Well template(s), please click the link above."
+
+                  },
+                  {
+                      id: 7,
+                      integer: 45,
+                      title: "Standard Tag List",
+                      route: "index",
+                      desc: "Standard Tag List is the collection of all the Standard Tag(s) of all the read types used for multiple devices. These Standard Tag(s) are very helpful, while referencing similar read types across multiple devices with same name. To review and/or update the Standard Tag List, please click the link above."
+
+                  },
+                  {
+                      id: 8,
+                      integer: 51,
+                      title: "Digital Source Tag Map(s)",
+                      route: "dsmVersions",
+                      desc: "Digital Source Tag Map(s) are the maps for each device, to link the read types to the Standard Tags in the Standard Tag List collection. Each device is represented as a RTU map with all the Read types for linked to the Standard Tag List collection. To review and/or update the RTU Tag Map(s), please click the link above."
+
+                  },
+                  {
+                      id: 9,
+                      integer: 55,
+                      title: "Well Template(s)",
+                      route: "wellTemplate",
+                      desc: "Well Template(s) is the set of one or more RTU map(s), which are configured by the App Admin, to simplify the device assignment to the wells. The user will assign/apply the template(s) to the wells, instead of assigning the devices. To review and /or update the Well template(s), please click the link above."
+
+                  }
+                ]
+            },
+            iconForItem: function(item) {
+              return item ? (item.integer < 50 ? 'star-border' : 'star') : '';
+            },
+            getClassForItem: function(item, selected) {
+              return selected ? 'item expanded' : 'item';
+            }
+        });
+    </script>
+
+</dom-module>

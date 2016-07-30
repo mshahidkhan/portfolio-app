@@ -1,0 +1,685 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="./modal-generator.html">
+<dom-module id="msk-home">
+    <style>
+      :host{
+        font-size: 16px !important;
+        padding-right: 50px;
+        padding-left: 50px;
+      }
+        .msk-section {
+            display: block;
+            z-index: 0;
+            background: #fff;
+            width: 100%;
+            clear: both;
+            padding: 0px 12px 12px 12px;
+        }
+        .msk-section-child {
+            width: 49%;
+            padding: 10px 8px 10px 10px;
+        }
+        .msk-section-child a {
+            display: block;
+            border-bottom: 1px solid #e1e2e5;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        a:link, a:visited {
+            color: #4980c5;
+            font-weight: 600 !important;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        route-link{
+          font-weight: 600 !important;
+        }
+        .msk-title {
+            border-bottom: 1px solid #e1e2e5;
+        }
+      .side-menu{
+        width: 250px;
+        border: 1px solid #ccc;        
+      }
+       /* Iron-Flex Layout for form */
+          .flex-horizontal-with-ratios {
+          @apply(--layout-horizontal);
+          }
+          .flexchild {
+          @apply(--layout-flex);
+          }
+          .flex2child {
+          @apply(--layout-flex-2);
+          }
+          .flex3child {
+          @apply(--layout-flex-3);
+          }
+          .flex4child {
+          @apply(--layout-flex-4);
+          }
+          .flex6child {
+          @apply(--layout-flex-6);
+          }
+          .flex-end-justified {
+          @apply(--layout-horizontal);
+          @apply(--layout-end-justified);
+          }
+          .flex-center-justified {
+          @apply(--layout-horizontal);
+          @apply(--layout-center-justified);
+          }
+          .flex-start-justified {
+          @apply(--layout-horizontal);
+          @apply(--layout-start-justified);
+          }
+        .flex-end-justified {
+          @apply(--layout-horizontal);
+          @apply(--layout-end-justified);
+        }
+        .flex-end-align {
+          @apply(--layout-horizontal);
+          @apply(--layout-end);
+        }
+        .flex-center-end-align{
+          @apply(--layout-horizontal);
+          @apply(--layout-end);
+          @apply(--layout-center-justified);
+        }
+        .flex-vertical {
+          @apply(--layout-vertical);
+        }
+        .form-buttons{
+          margin-top: 25px;
+        }
+        textarea {
+            resize: none;
+        }
+        .form-container{
+          width: 400px; 
+          padding: 20px;
+          margin-bottom: 50px;
+        }
+      .section-skills{
+        font-family: 'Mirza';
+        background-color: #00bcd4 !important;
+      }
+      .section-two{
+        font-family: 'Lato';
+        background-color: #fafafa !important;;
+        padding-bottom: 50px;
+      }
+      .section-two-head{
+        font-family: 'OpenSans';
+        font-size: 32px;
+        padding: 50px;
+      }
+      .section-two-subhead{
+        font-family: 'Titillium';
+        font-size: 18px;
+      }
+      .section-one{
+        font-family: 'Mirza';
+        background-color: #00bcd4 !important;
+        padding-bottom: 10px;
+        @apply --shadow-elevation-2dp;
+      } 
+      .section-three{
+        font-family: 'Mirza';
+        background-color: #00bcd4 !important;
+        padding-bottom: 50px;
+        @apply --shadow-elevation-2dp;
+      }
+      .section-experience{
+        font-family: 'Mirza';
+        background-color: #fafafa !important;
+        padding-bottom: 50px;
+        @apply --shadow-elevation-2dp;
+      }
+      .section-three-head{
+        font-family: 'Mirza';
+        font-size: 48px;
+        padding: 50px;
+      }
+      .section-three-subhead{
+        font-family: 'DancingScript';
+        font-size: 18px;
+      }
+      .section-four{
+        font-family: 'Mirza';
+        background-color: #fff !important;
+        padding-bottom: 50px;
+      }
+      .section-four-head{
+        font-family: 'Katibeh';
+        font-size: 48px;
+        padding: 50px;
+      }
+      .section-four-subhead{
+        font-family: 'Katibeh';
+        font-size: 18px;
+      }
+      
+      .centerMe{
+        align-content: center;
+        text-align: center;
+      }
+      paper-button.msk-button{
+        padding: 0.9em 2.97em;
+      }
+      paper-button.msk-button:hover{
+        background-color: #252525 !important;
+        color: #fff !important;
+        padding: 0.9em 2.97em;
+      }
+      iron-image{
+        margin: 0px auto;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); 
+        width:320px; 
+        height:260px; 
+        background-color: #fafafa !important;
+      }
+      .my-div{
+        color: rgb(114, 114, 114);
+
+        margin-bottom: 12px;
+        border-bottom: 1px solid rgb(238, 238, 238);
+      }
+      .me{
+        font-family: 'Katibeh';
+        font-size: 48px;
+        color: #fff;
+      }
+      .me2{
+        font-family: 'Roboto';
+        font-size: 32px;
+        color: #fff;
+      }
+      .me3{
+        font-family: 'Roboto';
+        font-size: 24px;
+        color: #fff;
+      }
+      paper-fab {
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 70px;
+      position: fixed;
+      right: 25px;
+      bottom: 25px;          
+     }
+      
+    </style>
+
+    <template>
+       <paper-fab icon="favorite" title="heart"></paper-fab>
+      <div class="section-one flex-center-justified" style="height: 400px;">
+        <div class="flex-vertical centerMe">
+          <div class="me">Hi, I'm <span style="color: ">Mohammed Shahid Khan</span></div>
+          <div class="me2">Frontend Developer, Full Stack and Technical Lead</div>
+          <div class="me3">@ Tata Consultancy Servies</div>
+          <div style="margin-top: 40px;">
+            <paper-button class="msk-button" raised on-tap="handleTap">Sign In</paper-button>
+            <paper-button class="msk-button" raised on-tap="handleTap">Register Me</paper-button>
+          </div>
+        </div>  
+      </div>
+      <div class="section-two">  
+        <div class="flex-center-justified section-two-head centerMe">
+          <div style="width:25% ">
+            <home-about-me title-me="About Me" footer-content="button">
+              {{aboutMe}}
+            </home-about-me>
+          </div>
+          <div class="centerMe" style="width:25%; border-radius: 50%; ">
+              <msk-user-avatar type="main"></msk-user-avatar>
+          </div>
+          <div style="width:25%">
+            <home-about-me title-me="Personal Details" footer-content="social">
+              <home-personal-info data={{userPersonalData}}></home-personal-info>
+            </home-about-me>
+          </div>
+        </div>
+      </div>
+      <div class="section-skills">
+        <div class="flex-center-justified section-three-head">
+          <my-skills></my-skills>
+        </div>
+      </div>
+      
+      <div class="section-experience">
+        <div class="flex-center-justified section-three-head">
+          <home-experience></home-experience>
+        </div>
+      </div>
+      
+      <div class="section-four">        
+        <div class="flex-center-justified section-four-head centerMe">
+          <div style="width:25% "></div>
+          {{headlineOne}}
+          <div style="width:25% "></div>
+        </div>
+        <div class="flex-center-justified section-four-subhead centerMe">
+            <div style="width:25% "></div>
+            {{subheadOne}}
+            <div style="width:25% "></div>
+        </div>      
+      </div>
+    </template>
+  
+    <script>
+        Polymer({
+            is: "msk-home",
+            properties: {
+              
+            },
+            ready: function () {
+              this.aboutMe = "Hello, I’m a UI & Front End Developer from Oklahoma City, OK. I hold a master degree of Computer Science from the National Institute of Technology, Bhopal, India. I have been working on Web applications/Portals and developing Frontend, Middleware and Backend for over 10 years now.";
+              this.experienceTitle = "Experience";
+
+
+              this.headlineOne = ' Hello, I’m a UI & Front End Developer from Oklahoma City, OK. I hold a master degree of Computer Science from the National Institute of Technology, Bhopal, India. I have been working on Web applications/Portals and developing Frontend, Middleware and Backend for over 10 years now.';
+              this.subheadOne= " Hello, I’m a UI & Front End Developer from Oklahoma City, OK. I hold a master degree of Computer Science from the National Institute of Technology, Bhopal, India. I have been working on Web applications/Portals and developing Frontend, Middleware and Backend for over 10 years now.";
+
+              this.userPersonalData = {name: 'Mohammed', phone: '012345', email: 'myemail@khanshahid.com'};
+            },
+          populateData: function(e){
+              console.log(e.target.id);
+          },
+          handleTap: function (e){
+            var modalGen = document.createElement('modal-generator');
+            modalGen.id = e.target.id;
+            modalGen.title = 'Login';
+            modalGen.msg = 'This is the message';
+            modalGen.actionPositive = null;
+            modalGen.actionNegative = null;
+
+            var modalDiv = document.getElementById("modalSpace");
+            if(modalDiv.hasChildNodes()){
+              var childNodes = modalDiv.childNodes;
+              Polymer.dom(modalDiv).removeChild(childNodes[0]);  
+            }        
+            Polymer.dom(modalDiv).appendChild(modalGen);
+          }
+        });
+    </script>
+
+</dom-module>
+
+<dom-module id="home-about-me">
+  <template>
+    <style is="custom-style" include="shared-styles">
+      :host{
+        font-family: 'Titillium';
+        font-size: 16px !important;
+        height: 250px;
+      }
+      hr.horizontal-line {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0));
+        margin: 20px 0px 0px 0px;
+      }
+      .title{
+        font-family: 'Mirza';
+        font-size: 24px;
+      }
+      .card-content{
+        font-family: 'Titillium';
+        text-align: left;
+      }
+      .card-actions{
+        font-weight: 700;
+      }
+      paper-card{
+        --paper-card-background-color: #fafafa !important;
+        font-family: 'Titillium';
+        width: 100%;
+        height: 250px;
+      }
+      paper-button {
+        font-family: 'Titillium';
+      }
+
+    </style>
+    <div class="flex-horizontal">
+      <!--<div class="flexchild title">{{titleMe}} <i class="fa fa-pencil"></i></div>-->
+      <hr class="horizontal-line">
+      <paper-card heading="{{titleMe}}" elevation=0>
+        <div class="card-content">
+          <content></content>
+        </div>
+        <div class="card-actions">
+          <template is="dom-if" if="{{isResumeButton(footerContent)}}">
+            <paper-button elevation="2">Download My Resume</paper-button>
+          </template>
+          <template is="dom-if" if="{{showSocialIcons(footerContent)}}">
+            <div class="flex-horizontal-with-ratios" style="height: 70px;">
+              <paper-item raised><i class="fa fa-twitter"></i></paper-item>
+              <paper-item raised><i class="fa fa-linkedin"></i></paper-item>
+              <paper-item raised><i class="fa fa-github"></i></paper-item>
+              <paper-item raised><i class="fa fa-facebook"></i></paper-item>
+            </div>
+          </template>
+        </div>
+      </paper-card>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'home-about-me',
+      properties: {
+        titleMe: {
+          type: String,
+          notify: true,
+          value: 'My Story'
+        },
+        aboutMe: {
+          type: String,
+          notify: true,
+          value: ''
+        },
+        footerContent: {
+          type: String,
+          notify: true
+        }
+        
+      },
+      ready: function(){
+        
+      },
+      isResumeButton: function(footerContent){
+        if(footerContent === 'button'){
+          return true;
+        }else{
+          return false;
+        }
+      },
+      showSocialIcons: function(footerContent){
+        if(footerContent === 'social'){
+          return true;
+        }else{
+          return false;
+        }
+      }      
+    });
+  </script>
+</dom-module>
+
+<dom-module id="home-personal-info">
+  <template>
+    <style is="custom-style" include="shared-styles">
+      :host{
+        font-family: 'Titillium';
+        font-size: 16px !important;
+      }
+      .my-div{
+        color: rgb(114, 114, 114);
+        margin: 0px 10px 12px 10px;
+        border-bottom: 1px solid rgb(238, 238, 238);
+      }
+      
+    </style>
+
+    <div class="flex-horizontal-with-ratios my-div">
+      <div class="flex2child">Name :</div>
+      <div class="flex6child">{{data.name}}</div>
+    </div>
+    <div class="flex-horizontal-with-ratios my-div">
+      <div class="flex2child">Phone :</div>
+      <div class="flex6child">{{data.phone}}</div>
+    </div>
+    <div class="flex-horizontal-with-ratios my-div">
+      <div class="flex2child">Email :</div>
+      <div class="flex6child">{{data.email}}</div>
+    </div> 
+  </template>
+  <script>
+    Polymer({
+      is: 'home-personal-info',
+      properties: {
+        title: {
+          type: String,
+          notify: true,
+          value: 'My Story'
+        },
+        aboutMe: {
+          type: String,
+          notify: true,
+          value: ''
+        },
+        name: {
+          type: String,
+          value: 'Shahid'
+        },
+        data: { 
+          type: Object,
+          notify: true,
+          value: {
+            name: '',
+            phone: '',
+            email: ''
+           }
+        }
+        
+      },
+      attached: function(){
+        this.data.name = 'Mohammed Shahid Khan'
+        this.data.phone = '01234512345';
+        this.data.email = 'shahid.khan@khanshahid.com';
+      }
+      
+    });
+  </script>
+</dom-module>
+
+<dom-module id="home-experience">
+  <template>
+    <style is="custom-style" include="shared-styles">
+      :host{
+        font-family: 'Titillium';
+        font-size: 14px !important;
+
+      }
+      .title{
+        font-size: 42px;
+        color: #000;
+        padding: 20px 0px 20px 0px;
+      }      
+      .icon-span{
+        padding-right: 10px;
+      }
+      .card-item{
+        margin-top: 15px;
+      }
+      paper-card{
+        margin-right: 25px;
+      }
+    </style>
+
+    <div class="title">
+      {{title}}
+    </div>
+    <template is="dom-repeat" items="{{experienceArray}}">
+        <paper-card heading="{{item.startDate}}-{{item.endDate}}" elevation="4">
+          <div class="card-content ">
+            <div class="card-item">
+              <span class="icon-span"><i class="fa fa-briefcase"></i></span>
+              <span>{{item.company}}</span>
+            </div>
+            <div class="card-item">
+              <span class="icon-span"><i class="fa fa-user"></i></span>
+              <span>{{item.role}}</span>
+            </div>
+            <div class="card-item">
+              <span class="icon-span"><i class="fa fa-users"></i></span>
+              <span>{{item.clients}}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+          </div>
+        </paper-card>
+    </template>
+    
+     
+  </template>
+  <script>
+    Polymer({
+      is: 'home-experience',
+      properties: {
+        title: {
+          type: String,
+          notify: true,
+          value: 'Experience'
+        }
+      },
+      attached: function(){
+        this.experienceArray = 
+          [
+            {
+              startDate: 'Dec, 2011', 
+              endDate: 'Current',
+              company: 'Tata Consultancy Services',
+              role: 'Senior Frontend/Fullstack Developer',
+              clients: 'GE Oil & Gas, Motorola Mobility',
+              isCurrent: true 
+            },
+            {
+              startDate: 'Aug, 2010', 
+              endDate: 'Nov, 2011',
+              company: 'Hitachi Consulting Ltd',
+              role: 'Portal Consultant/Developer',
+              clients: 'NetApp',
+              isCurrent: false 
+            },
+            {
+              startDate: 'Jun, 2006', 
+              endDate: 'Aug, 2010',
+              company: 'Accenture',
+              role: 'Senior Software Engineer',
+              clients: 'Nokia',
+              isCurrent: false 
+            } 
+          ];
+      }
+      
+    });
+  </script>
+</dom-module>
+
+<dom-module id="my-skills">
+  <template>
+    <style is="custom-style" include="shared-styles">
+      :host{
+        font-family: 'Titillium';
+        font-size: 14px !important;
+
+      }
+      .title{
+        font-size: 42px;
+        color: #fff;
+        padding: 20px 0px 20px 0px;
+      }      
+      .icon-span{
+        padding-right: 10px;
+      }
+      .card-item{
+        margin-top: 15px;
+      }
+      paper-card{
+        margin-right: 25px;
+        margin-top: 25px;
+      }
+      .paper-card-1 .header.paper-card .title-text.paper-card{
+        font-size: 18px;
+      }
+    </style>
+
+    <div class="title">
+      {{title}}
+    </div>
+    <template is="dom-repeat" items="{{skillsArray}}">
+        <paper-card heading="{{item.type}}" elevation="4">
+          <div class="card-content">
+            <div class="card-item">
+              <span class="icon-span"><i class="fa fa-briefcase"></i></span>
+              <span>{{item.skill}}</span>
+            </div>
+            <div class="card-item">
+              <span>{{item.role}}</span>
+            </div>
+            <div class="card-item">
+              <span class="icon-span"><i class="fa fa-users"></i></span>
+              <span>{{item.proficiency}}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+          </div>
+        </paper-card>
+    </template>
+    
+     
+  </template>
+  <script>
+    Polymer({
+      is: 'my-skills',
+      properties: {
+        title: {
+          type: String,
+          notify: true,
+          value: 'Skills'
+        }
+      },
+      attached: function(){
+        this.skillsArray = 
+          [
+            {
+              type: 'Frontend',
+              skill: 'Google Polymer, WebComponents',
+              icon: '',
+              proficiency: 'Intermediate'
+            },
+            {
+              type: 'Frameworks/Middleware',
+              skill: 'Angular.js, Angular 2, Node',
+              icon: '',
+              proficiency: 'Intermediate' 
+            },
+            {
+              type: 'Frontend',
+              skill: 'Javascript, HTML5, CSS',
+              icon: '',
+              proficiency: 'Intermediate' 
+            },
+            {
+              type: 'Tools',
+              skill: 'Node, Express, NPM/Bower, Gulp, Github',
+              icon: '',
+              proficiency: 'Intermediate' 
+            },
+            {
+              type: 'Middleware/Backend',
+              skill: 'Java, Java EE, Database',
+              icon: '',
+              proficiency: 'Intermediate' 
+            },
+            {
+              type: 'Testing',
+              skill: 'Chai, Sinon, Jasmine, WebComponents Tester',
+              icon: '',
+              proficiency: 'Intermediate' 
+            }
+          ];
+      }
+      
+    });
+  </script>
+</dom-module>

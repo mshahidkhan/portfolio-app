@@ -1,0 +1,324 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="./modal-generator.html">
+<link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+<dom-module id="msk-profile">
+    <style is="custom-style">
+        .msk-section {
+            display: block;
+            z-index: 0;
+            background: #fff;
+            width: 100%;
+            clear: both;
+            padding: 0px 12px 12px 12px;
+        }
+        .msk-section-child {
+            width: 49%;
+            font-size: 14px;
+            padding: 10px 8px 10px 10px;
+        }
+        .msk-section-child a {
+            display: block;
+            font-size: 14px;
+            border-bottom: 1px solid #e1e2e5;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        a:link, a:visited {
+            color: #4980c5;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        route-link{
+          font-size: 14px !important;
+          font-weight: 600 !important;
+        }
+        .msk-title {
+            border-bottom: 1px solid #e1e2e5;
+            font-size: 13px;
+        }
+        .side-menu{
+          width: 250px;
+          border: 1px solid #ccc;
+        }
+       /* Iron-Flex Layout for form */
+          .flex-horizontal-with-ratios {
+          @apply(--layout-horizontal);
+          }
+          .flexchild {
+          @apply(--layout-flex);
+          }
+          .flex2child {
+          @apply(--layout-flex-2);
+          }
+          .flex3child {
+          @apply(--layout-flex-3);
+          }
+          .flex4child {
+          @apply(--layout-flex-4);
+          }
+          .flex6child {
+          @apply(--layout-flex-6);
+          }
+          .flex-end-justified {
+          @apply(--layout-horizontal);
+          @apply(--layout-end-justified);
+          }
+          .flex-center-justified {
+          @apply(--layout-horizontal);
+          @apply(--layout-center-justified);
+          }
+          .flex-start-justified {
+          @apply(--layout-horizontal);
+          @apply(--layout-start-justified);
+          }
+        .flex-end-justified {
+          @apply(--layout-horizontal);
+          @apply(--layout-end-justified);
+        }
+        .form-buttons{
+          margin-top: 25px;
+        }
+        textarea {
+            resize: none;
+        }
+      .section-two{
+        font-family: 'Lato';
+        background-color: #fff !important;
+        padding-bottom: 50px;
+      }
+      .section-two-head{
+        font-family: 'OpenSans';
+        font-size: 32px;
+        padding: 50px;
+      }
+      .section-two-subhead{
+        font-family: 'Tangerine';
+        font-size: 18px;
+      }
+       
+      .section-three{
+        font-family: 'Tangerine';
+        background-color: #edeeef !important;
+        padding-bottom: 50px;
+        @apply --shadow-elevation-4dp;
+      }
+      .section-three-head{
+        font-family: 'OpenSans';
+        font-size: 32px;
+        padding: 50px;
+      }
+      .section-three-subhead{
+        font-family: 'Tangerine';
+        font-size: 18px;
+      }
+      
+      .centerMe{
+        align-content: center;
+        text-align: center;
+      }
+      paper-button.msk-button{
+        padding: 0.9em 2.97em;
+      }
+      paper-button.msk-button:hover{
+        background-color: #252525 !important;
+        color: #fff !important;
+        padding: 0.9em 2.97em;
+      }
+ 
+    </style>
+
+    <template>
+      <div class="flex-center-justified" style="padding: 20px 0 20px 0; background-color: #fff; ">
+        <paper-button class="msk-button" hidden$="{{isLoggedIn}}" raised on-tap="login">Sign In</paper-button>
+          <paper-button class="msk-button" hidden$="{{!isLoggedIn}}" raised on-tap="logout">Logout</paper-button>
+      </div>
+      
+      <div class="flex-horizontal section-two">        
+        <div class="section-two-head">
+          <msk-section-header title="Profile Summary"></msk-section-header>    
+        </div>
+        <div class="flex-center-justified section-two-subhead centerMe">
+          
+        </div>      
+      </div>
+      
+    </template>
+  
+    <script>
+        Polymer({
+          is: "msk-profile",
+          properties: { 
+            isLoggedIn: { 
+              type: Boolean,
+              value: false,
+              notify: true
+            }
+          },
+          ready: function () {
+            this.headlineOne = 'My path as a Front-End developer has led me to a focus in Web Components and Polymer';
+            this.subheadOne= "My interest in web development stemmed from my passion for gaming, but that's a story for another day. Between developing websites and playing video games, I admittedly spend most of my time in front of a screen. Some of my passions are writing clean code, creating well-thought user experiences, and filling up a fresh cup of coffee.";
+                        
+          },
+          attached: function () {
+            var homeComponent = document.querySelector('home-component-1');
+            this.isLoggedIn = homeComponent.isLoggedIn;
+            var headerDiv = Polymer.dom(homeComponent.root).querySelector('#mskHeaderArea');
+            var homeEle = document.createElement('header-profile');
+
+            if(headerDiv.hasChildNodes()){
+              var childNodes = headerDiv.childNodes;
+              Polymer.dom(headerDiv).removeChild(childNodes[0]);
+            }
+            Polymer.dom(headerDiv).appendChild(homeEle);
+            console.log("Logged In");
+          },
+          populateData: function(e){
+              console.log(e.target.id);
+          },
+          login: function (e){
+            var modalGen = document.createElement('modal-generator');
+            modalGen.id = e.target.id;
+            modalGen.title = 'Login';
+            modalGen.msg = 'This is the message';
+            modalGen.actionPositive = null;
+            modalGen.actionNegative = null;
+
+            var modalDiv = document.getElementById("modalSpace");
+            if(modalDiv.hasChildNodes()){
+              var childNodes = modalDiv.childNodes;
+              Polymer.dom(modalDiv).removeChild(childNodes[0]);  
+            }        
+            Polymer.dom(modalDiv).appendChild(modalGen);
+          },
+          logout: function (e){
+            console.log("Logout");
+            
+          }
+        });
+    </script>
+</dom-module>
+
+
+<dom-module id="msk-user-avatar">
+  <template>
+    <style is="custom-style" include="shared-styles">
+      .brand{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+      .main{
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        border: 8px solid #fefefe ;
+      }
+      paper-icon-button {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+        }
+      ::content paper-icon-button img {
+        border-radius: 50%;
+      }
+      iron-image{
+        border-radius: 50%;
+      }
+      
+    </style>
+    <div>
+      <template is="dom-if" if="{{isIcon(type)}}">
+        <paper-icon-button class$="{{type}}" raised src="{{imageUrl}}"></paper-icon-button>
+      </template>
+      <template is="dom-if" if="{{isMainImage(type)}}">
+        <div>
+          <iron-image class$="{{type}}" sizing="contain" preload fade src="../../images/msk-small.jpg"></iron-image>
+        </div>
+      </template>
+      
+      
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'msk-user-avatar',
+      properties: {
+        imageUrl: {
+          type: String,
+          notify: true,
+          value: '../../images/msk-small.jpg'
+        },
+        type: { 
+          type: String,
+          notify: true,
+          value: 'brand'
+        }
+      },
+      ready: function(){
+        
+      },
+      attached: function(){
+
+      },
+      isIcon: function(type){
+        if(type === 'brand')
+          return true
+        else
+          return false
+      },
+      isMainImage: function(type){
+        if(type === 'main')
+          return true
+        else
+          return false
+      }
+      
+    });
+  </script>
+</dom-module>
+
+<dom-module id="msk-section-header">
+  <template>
+    <style is="custom-style" include="shared-styles">
+      hr.horizontal-line {
+        border: 0;
+        height: 2px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0));
+        margin: 20px 0px 0px 0px;
+      }
+      .title{
+        font-family: 'Mirza';
+        font-size: 24px;
+      }
+    </style>
+    <div class="flex-horizontal">
+      <div class="flexchild title">{{title}} <i class="fa fa-pencil"></i></div>
+    </div>
+    <hr>
+  </template>
+  <script>
+    Polymer({
+      is: 'msk-section-header',
+      properties: {
+        title: {
+          type: String,
+          notify: true,
+          value: ''
+        }
+        
+      },
+      ready: function(){
+        
+      }
+      
+    });
+  </script>
+</dom-module>

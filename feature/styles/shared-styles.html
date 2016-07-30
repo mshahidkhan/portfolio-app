@@ -1,0 +1,244 @@
+<!-- shared-styles.html -->
+<dom-module id="shared-styles">
+    <template>
+        <style is="custom-style">
+          :root {
+            --shadow-elevation-2dp: {
+              box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                          0 1px 5px 0 rgba(0, 0, 0, 0.12),
+                          0 3px 1px -2px rgba(0, 0, 0, 0.2);
+            };
+            --shadow-elevation-3dp: {
+              box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
+                          0 1px 8px 0 rgba(0, 0, 0, 0.12),
+                          0 3px 3px -2px rgba(0, 0, 0, 0.4);
+            };
+            --shadow-elevation-4dp: {
+              box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+                          0 1px 10px 0 rgba(0, 0, 0, 0.12),
+                          0 2px 4px -1px rgba(0, 0, 0, 0.4);
+            };
+            --shadow-elevation-6dp: {
+              box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+                          0 1px 18px 0 rgba(0, 0, 0, 0.12),
+                          0 3px 5px -1px rgba(0, 0, 0, 0.4);
+            };
+            --shadow-elevation-8dp: {
+              box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                          0 3px 14px 2px rgba(0, 0, 0, 0.12),
+                          0 5px 5px -3px rgba(0, 0, 0, 0.4);
+            };
+            --shadow-elevation-12dp: {
+              box-shadow: 0 12px 16px 1px rgba(0, 0, 0, 0.14),
+                          0 4px 22px 3px rgba(0, 0, 0, 0.12),
+                          0 6px 7px -4px rgba(0, 0, 0, 0.4);
+            };
+            --shadow-elevation-16dp: {
+              box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+                          0  6px 30px 5px rgba(0, 0, 0, 0.12),
+                          0  8px 10px -5px rgba(0, 0, 0, 0.4);
+            };
+            --shadow-elevation-24dp: {
+              box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+                          0 9px 46px 8px rgba(0, 0, 0, 0.12),
+                          0 11px 15px -7px rgba(0, 0, 0, 0.4);
+            };
+          }
+            body{
+                font-family: 'lato', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+            }
+            /* Your local CSS File */
+            @font-face {
+                font-family: 'Lato';
+                src: local('Lato Bold'), local('Lato-Bold'), url(./css/fonts/lato/lato-Bold.ttf) format('truetype');
+            }
+           @font-face {
+                font-family: 'OpenSans';
+                font-style: normal;
+                font-weight: normal;
+                src: local('OpenSans'), local('Open_Sans'), url(./css/fonts/Open_Sans/OpenSans-Regular.ttf) format('truetype');
+            }
+            @font-face {
+                font-family: 'Titillium';
+                font-style: normal;
+                font-weight: normal;
+                src: local('Titillium'), local('Titillium_Web'), url(./css/fonts/Titillium_Web/TitilliumWeb-Regular.ttf) format('truetype');
+            }
+            @font-face {
+                font-family: 'Tangerine';
+                font-style: normal;
+                font-weight: normal;
+                src: local('Tangerine'), local('Tangerine'), url(./css/fonts/Tangerine/Tangerine_Regular.ttf) format('truetype');
+            }
+            @font-face {
+                font-family: 'Parisienne';
+                font-style: normal;
+                font-weight: normal;
+                src: local('Parisienne'), local('Parisienne'), url(./css/fonts/Parisienne/Parisienne-Regular.ttf) format('truetype');
+            }
+            @font-face {
+                font-family: 'Mirza';
+                font-style: normal;
+                font-weight: normal;
+                src: local('Mirza'), local('Mirza'), url(./css/fonts/Mirza/Mirza-Regular.ttf) format('truetype');
+            }
+            @font-face {
+                font-family: 'MeriendaOne';
+                font-style: normal;
+                font-weight: normal;
+                src: local('MeriendaOne'), local('MeriendaOne'), url(./css/fonts/MeriendaOne/MeriendaOne-Regular.ttf) format('truetype');
+            }
+             @font-face {
+                font-family: 'Katibeh';
+                font-style: normal;
+                font-weight: normal;
+                src: local('Katibeh'), local('Katibeh'), url(./css/fonts/Katibeh/Katibeh-Regular.ttf) format('truetype');
+            }
+             @font-face {
+                font-family: 'KaushanScript';
+                font-style: normal;
+                font-weight: normal;
+                src: local('KaushanScript'), local('KaushanScript'), url(./css/fonts/KaushanScript/KaushanScript-Regular.ttf) format('truetype');
+            }
+
+          
+            /* Shared style for  buttons */
+            .button-primary {
+                background-color: #3ea0b5;
+                color: #fff;
+                border-radius: 4px;
+                padding-right: 25px;
+                padding-left: 25px;
+                border: 1px solid #808080;
+                text-shadow: none;
+                font-size: 14px
+            }
+            .button-secondary {
+                background: #fff;
+                color: #3ea0b5;
+                border-radius: 4px;
+                padding-right: 25px;
+                padding-left: 25px;
+                border: 1px solid #808080;
+                text-shadow: none;
+                font-size: 14px
+            }
+            .button-tertiary {
+                background: #fff;
+                color: red;
+                border-radius: 4px;
+                padding-right: 25px;
+                padding-left: 25px;
+                border: 1px solid #808080;
+                text-shadow: none;
+                font-size: 14px
+            }
+            .button-default {
+                background: #fff;
+                color: #3ea0b5;
+                border-radius: 4px;
+                padding-right: 25px;
+                padding-left: 25px;
+                border: 1px solid #808080;
+                text-shadow: none;
+                font-size: 14px
+            }
+            .button-cancel {
+                 background: #BDBDBD;
+                 color: #000;
+                 border-radius: 4px;
+                 padding-right: 25px;
+                 padding-left: 25px;
+                 text-shadow: none;
+                 font-size: 14px
+             }
+
+            .button-disabled {
+                background: #fff;
+                color: #333;
+                border-radius: 4px;
+                padding-right: 25px;
+                padding-left: 25px;
+                text-shadow: none;
+            }
+
+            /* Iron-Flex Layout for form */
+            .flex-horizontal-with-ratios {
+            @apply(--layout-horizontal);
+            }
+            .flexchild {
+            @apply(--layout-flex);
+            }
+            .flex2child {
+            @apply(--layout-flex-2);
+            }
+            .flex3child {
+            @apply(--layout-flex-3);
+            }
+            .flex4child {
+            @apply(--layout-flex-4);
+            }
+            .flex6child {
+            @apply(--layout-flex-6);
+            }
+            .flex-end-justified {
+            @apply(--layout-horizontal);
+            @apply(--layout-end-justified);
+            }
+            .flex-center-justified {
+            @apply(--layout-horizontal);
+            @apply(--layout-center-justified);
+            }
+            .flex-start-justified {
+            @apply(--layout-horizontal);
+            @apply(--layout-start-justified);
+            }
+
+            
+            .flex-end-align {
+                @apply(--layout-horizontal);
+                @apply(--layout-end);
+            }
+            .flex-center-end-align{
+                @apply(--layout-horizontal);
+                @apply(--layout-end);
+                @apply(--layout-center-justified);
+            }
+
+            @apply(--layout-center-justified);
+          /* Paper Dialog starts here */
+            .left-label-padding {
+                padding-left: 15px;
+                margin: auto;
+            }
+            .right-input-margin {
+                margin-right: 15px;
+            }
+            .bottom-div-margin {
+                margin-bottom: 20px;
+            }
+            
+          paper-dialog.colored {
+            border: 2px solid;
+            border-color: var(--paper-green-500);
+            background-color: var(--paper-light-green-50);
+            color: var(--paper-green-500);
+          }
+          paper-dialog.size-position {
+              position: fixed;
+              top: 16px;
+              right: 16px;
+              width: 600px;
+              min-height: 600px;
+              overflow: auto;
+          }
+          paper-dialog.paper-dialog-0 {
+              min-width: 850px;
+              min-height: 400px;
+          }
+          .paper-dialog-0 .buttons{
+              justify-content: space-between;
+          }
+        </style>
+    </template>
+</dom-module>

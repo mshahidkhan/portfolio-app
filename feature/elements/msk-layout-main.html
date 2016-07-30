@@ -1,0 +1,26 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="msk-layout-main">
+   <template>
+   <style is="custom-style">
+      page-content{
+          font-family: 'Roboto', 'Noto', sans-serif;
+      }
+      #stlbreadcrumb{
+          font-family: 'Roboto', 'Noto', sans-serif;
+      }
+   </style>
+      <page-content>
+         <div id="tagMainContent" style="padding-top: 10px; padding-bottom: 10px;"></div>
+      </page-content>
+      <content></content>
+  </template>
+  <script>
+    Polymer({
+        is: 'msk-layout-main',
+      attached:function(){
+         this.querySelector('#tagMainContent').appendChild(this.tagMainContent)
+      }
+    })
+  </script>
+</dom-module>
+

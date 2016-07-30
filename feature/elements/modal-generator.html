@@ -1,0 +1,188 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
+<link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="css" href="../styles/css/demo.css" />
+
+<dom-module id="modal-generator">
+  <style is="custom-style" include="shared-styles" >
+    :host{
+      font-family: 'roboto';
+    }
+  .buttons.title{
+    color: white;
+    background-color: #3ea0b5;
+    justify-content: space-between;
+  }
+    paper-dialog.size-position {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      width: 400px;
+      min-height: 200px;
+      overflow: auto;
+    }
+    paper-dialog.paper-dialog-0 {
+      min-width: 450px;
+      min-height: 200px;
+    }
+    .paper-dialog-0 .buttons.footer{
+      justify-content: center;
+    }
+    .special{
+      min-width: 15.14em;
+      font-size: large;
+    }
+  </style>
+  <template>
+    <paper-dialog role="dialog" modal nocancelonoutsideclick="true">
+      <div class="buttons title">
+          <h3>{{title}}</h3>
+          <paper-button dialog-dismiss><i class="fa fa-close"></i></paper-button>
+      </div>
+      <div>
+        <signup-form loginStatus={{isLoggedIn}}></signup-form>
+      </div>
+      
+      <template is="dom-if" if="{{actionPositive}}">
+        <div class="buttons footer">
+          <paper-button raised dialog-dismiss class="button-cancel" hidden$="{{!actionNegative}}">{{actionNegative}}</paper-button>
+          <paper-button raised dialog-confirm autofocus on-click="handleTap" class="special"  hidden$="{{!actionPositive}}">{{actionPositive}}</paper-button>        
+      </div>
+      </template>
+      
+      
+    </paper-dialog>
+  </template>  
+</dom-module>
+<script>
+  Polymer({
+    is: 'modal-generator',
+    properties: {
+      title: {
+        type: String,
+        value: 'Title'
+      },
+      msg:{
+        type: String,
+        value: 'Are you sure you want to save the changes ?'
+      },
+      actionPositive:{
+        type: String,
+        value: 'Yes'
+      },
+      actionNegative:{
+        type: String
+      }
+    },
+    ready: function(){ 
+      console.log("Modal Generator - isLoggedIn : "+this.isLoggedIn);
+    },
+    attached: function(){
+      var dialog = this.$$('paper-dialog');
+      dialog.toggle();
+    },
+    handleTap: function (){
+      console.log('Modal Action!');
+      
+    }
+});
+</script>
+
+<dom-module id="signup-form">
+  <template>
+      <style include="shared-styles">
+        /* Iron-Flex Layout for form */          
+        .form-buttons{
+          margin-top: 25px;
+        }
+        textarea {
+          resize: none;
+        }
+        .form-container{
+          min-width: 200px; 
+          padding: 20px;
+          margin: 20px;
+        }
+        .buttons{
+          position: relative;
+          padding: 8px 8px 8px 24px;
+          margin: 0;
+          color: #3f51b5;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex;
+          -ms-flex-direction: row;
+          -webkit-flex-direction: row;
+          flex-direction: row;
+          -ms-flex-pack: end;
+          -webkit-justify-content: flex-end;
+          justify-content: flex-end;
+        }
+        .buttons.footer{
+          justify-content: center;
+          margin: 20px;
+        }
+        .buttons.title{
+          color: white;
+          background-color: #3ea0b5;
+          justify-content: space-between;
+        }
+        .special{
+          min-width: 15.14em;
+          font-size: large;
+        }
+        paper-imput{
+          border-bottom: 1px solid #ececec;
+        }
+      </style>
+      <div class="form-container">
+          <form class="subsection" name="tmAddEditForm" id="tmAddEditForm">
+              <div class="flex-column-with-ratios">
+                <paper-input label="Username" id="inputWithButton">
+                  <iron-icon icon="account-circle" prefix></iron-icon>
+                </paper-input>
+                <paper-input label="Password" type="password">
+                  <iron-icon icon="lock" prefix></iron-icon>
+                </paper-input>
+              </div>
+          </form>            
+          <div class="buttons footer">
+            <paper-button raised dialog-confirm autofocus on-click="handleTap" class="special">Login</paper-button>          
+          </div>
+        </div>
+    </template>
+  <script>
+    Polymer({
+      is: id="signup-form",
+      properties: {
+        
+      },
+      attached: function (){
+        
+      },
+      handleTap: function() { 
+        this.set("isLoggedIn", true);
+        console.log("Login clicked!");
+        // var mainHead = document.querySelector('home-component-1');
+        // mainHead.isLoggedIn = true;
+        Router.go('profile');
+      }
+    })
+  </script>
+</dom-module>
+
+
+
+
+
+
+
+
+
+
+
+
+

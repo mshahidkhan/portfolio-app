@@ -1,0 +1,183 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
+<link rel="import" href="./modal-generator.html">
+
+<dom-module id="msk-main">
+    <style>
+        .msk-section {
+            display: block;
+            z-index: 0;
+            background: #fff;
+            width: 100%;
+            clear: both;
+            padding: 0px 12px 12px 12px;
+        }
+
+        .msk-section-child {
+            width: 49%;
+            font-size: 14px;
+            padding: 10px 8px 10px 10px;
+        }
+
+        .msk-section-child a {
+            display: block;
+            font-size: 14px;
+            border-bottom: 1px solid #e1e2e5;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        a:link, a:visited {
+            color: #4980c5;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        route-link{
+          font-size: 14px !important;
+          font-weight: 600 !important;
+        }
+        .msk-title {
+            border-bottom: 1px solid #e1e2e5;
+            font-size: 13px;
+        }
+      .side-menu{
+        width: 250px;
+        border: 1px solid #ccc;
+        
+      }
+       /* Iron-Flex Layout for form */
+          .flex-horizontal-with-ratios {
+          @apply(--layout-horizontal);
+          }
+          .flexchild {
+          @apply(--layout-flex);
+          }
+          .flex2child {
+          @apply(--layout-flex-2);
+          }
+          .flex3child {
+          @apply(--layout-flex-3);
+          }
+          .flex4child {
+          @apply(--layout-flex-4);
+          }
+          .flex6child {
+          @apply(--layout-flex-6);
+          }
+          .flex-end-justified {
+          @apply(--layout-horizontal);
+          @apply(--layout-end-justified);
+          }
+          .flex-center-justified {
+          @apply(--layout-horizontal);
+          @apply(--layout-center-justified);
+          }
+          .flex-start-justified {
+          @apply(--layout-horizontal);
+          @apply(--layout-start-justified);
+          }
+        .flex-end-justified {
+          @apply(--layout-horizontal);
+          @apply(--layout-end-justified);
+        }
+        .form-buttons{
+          margin-top: 25px;
+        }
+        textarea {
+            resize: none;
+        }
+        .form-container{
+          width: 400px; 
+          padding: 20px;
+          margin-bottom: 50px;
+        }
+    </style>
+
+    <template>
+      <div class="side-menu">
+        <paper-menu selected="0" >
+          <template is="dom-repeat" items="{{tagSections}}">
+            <paper-item on-tap="populateData" id="[[item.title]]">{{item.title}}</paper-item>
+          </template>
+        </paper-menu>
+      </div>
+      <div class="form-container">
+        <form class="subsection" name="tmAddEditForm" id="tmAddEditForm">
+            <div class="flex-column-with-ratios">
+              <paper-input label="username" id="inputWithButton" value="{{username}}"></paper-input>
+              <paper-input label="email" >value="{{email}}"</paper-input>
+            </div>
+        </form>
+      </div>
+      
+      <div>
+        <paper-button raised on-tap="handleTap">Click Me!</paper-button>
+      </div>
+      <div class="msk-section">
+          <template is="dom-repeat" items="{{tagSections}}">
+              <div class="msk-section-child">
+                  <span>
+                      <a><route-link route="{{item.route}}">{{item.title}}</route-link></a>
+                  </span>
+                  <span>
+                      {{item.desc}}
+                  </span>
+              </div>
+          </template>
+      </div>
+    </template>
+  
+    <script>
+        Polymer({
+            is: "msk-main",
+            ready: function () {
+                this.tagSections =  [{
+                        "stl": {
+                            "title": "Standard Tag List",
+                            "route": "list",
+                            "desc": "Standard Tag List is the collection of all the Standard Tag(s) of all the read types used for multiple devices. These Standard Tag(s) are very helpful, while referencing similar read types across multiple devices with same name. To review and/or update the Standard Tag List, please click the link above."
+
+                        }
+                    }, {
+                        "stl2": {
+                            "title": "Digital Source Tag Map(s)",
+                            "route": "dsmVersions",
+                            "desc": "Digital Source Tag Map(s) are the maps for each device, to link the read types to the Standard Tags in the Standard Tag List collection. Each device is represented as a RTU map with all the Read types for linked to the Standard Tag List collection. To review and/or update the RTU Tag Map(s), please click the link above."
+
+                        }
+                    }, {
+                        "stl3": {
+                            "title": "Well Template(s)",
+                            "route": "wellTemplate",
+                            "desc": "Well Template(s) is the set of one or more RTU map(s), which are configured by the App Admin, to simplify the device assignment to the wells. The user will assign/apply the template(s) to the wells, instead of assigning the devices. To review and /or update the Well template(s), please click the link above."
+
+                        }
+                    }];
+            },
+          populateData: function(e){
+              console.log(e.target.id);
+          },
+          handleTap: function (e){
+            var modalGen = document.createElement('modal-generator');
+            modalGen.id = e.target.id;
+            modalGen.title = 'Confirm';
+            modalGen.msg = 'This is the message';
+            modalGen.actionPositive = "Login"
+
+            var modalDiv = document.getElementById("modalSpace");
+            if(modalDiv.hasChildNodes()){
+              var childNodes = modalDiv.childNodes;
+              Polymer.dom(modalDiv).removeChild(childNodes[0]);  
+            }        
+            Polymer.dom(modalDiv).appendChild(modalGen);
+          }
+        });
+    </script>
+
+</dom-module>

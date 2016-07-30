@@ -1,0 +1,184 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+
+<dom-module id="header-main">
+   <template>
+
+  <style is="custom-style">
+    body {
+      margin: 0;
+      font-family: 'Roboto', 'Noto', sans-serif;
+      background-color: #eee;
+    }
+    app-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 800px;
+      z-index: 1;
+      color: darkgrey;
+      background-image: url(/images/pexels-photo.jpg);
+      background-position: bottom center;
+      background-size: cover;
+      --app-header-background-front-layer: {
+        background: -webkit-linear-gradient(top, transparent 0%, transparent 60%, rgba(100,100,100,0.5) 100%);
+      };
+      --app-header-background-rear-layer: {
+        background-color: #fff;
+        color: #000;
+      };
+    } 
+    
+    app-header paper-icon-button {
+      --paper-icon-button-ink-color: white;
+    }
+    [title] {
+      font-weight: 400;
+      margin: 0 0 0 50px;
+    }
+    [condensed-title] {
+      font-weight: 400;
+      margin-left: 30px;
+    }
+    [condensed-title] i {
+      font-style: normal;
+      font-weight: 100;
+    }
+    app-toolbar.tall {
+      height: 148px;
+    }
+    iron-list {
+      padding-top: 148px;
+      margin-top: 64px;
+      padding-bottom: 16px;
+    }
+    .item {
+      @apply(--layout-horizontal);
+      padding: 20px;
+      border-radius: 8px;
+      background-color: white;
+      border: 1px solid #ddd;
+      max-width: 800px;
+      margin: 16px auto 0 auto;
+    }
+    .item:focus {
+      outline: 0;
+      border-color: #333;
+    }
+    .avatar {
+      height: 40px;
+      width: 40px;
+      border-radius: 20px;
+      box-sizing: border-box;
+      background-color: #DDD;
+    }
+    .pad {
+      padding: 0 16px;
+      @apply(--layout-flex);
+      @apply(--layout-vertical);
+    }
+    .primary {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .secondary {
+      font-size: 14px;
+    }
+    .dim {
+      color: gray;
+    }
+    .spacer {
+      @apply(--layout-flex);
+    }
+    #router_mount {
+      display: block;
+      padding: 450px 0px 40px 0px;
+      
+    }
+    .my-heading{
+      font: 500 4vw "Mirza", script;
+      text-align: center;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: 150px;
+      left: 0;
+      right: 0;
+    }
+    .my-sub-head{
+      font: 100 2vw "Mirza", script;
+      text-align: center;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: 100px;
+      left: 0;
+      right: 0;
+    }
+    .my-name{
+      font: 700 4vw "Mirza", script;
+      font-style: italic;
+      color: #00bcd4;
+      padding-left: 20px;
+    }
+    @media (max-width: 639px) {
+      [main-title] {
+        left: 85px;
+        bottom: 50px;
+      }
+    }
+  </style>
+      <app-header condenses fixed
+          effects="waterfall resize-snapped-title fade-background"
+          effects-config='{"resize-snapped-title": {"startsAt": 0.3, "duration": "100ms"}, "fade-background": {"startsAt": 0.8, "endsAt": 0.9}}'>
+        <app-toolbar>
+          <h4 condensed-title></h4>
+          <h4 title></h4>
+          <paper-icon-button icon="search"></paper-icon-button>
+          <paper-icon-button icon="menu" on-tap="editProfile"></paper-icon-button>
+          <msk-user-avatar></msk-user-avatar>     
+        </app-toolbar>
+        <div class="my-heading">
+          <div>Hi, I'm <span class="my-name"> Mohammed Shahid Khan</span></div><br/>
+        </div>
+        <div class="my-sub-head">Web developer, Fullstack, Lead UI Developer @ Tata Consultancy Services</div>
+        
+      </app-header>
+  </template>
+  <script>
+    Polymer({
+      is: 'header-main',
+      ready: function(){
+       /*  var fab = document.querySelector('paper-fab');
+        var header = document.querySelector('app-header');
+        window.addEventListener('scroll', function() {
+          var progress = header.getScrollState().progress;
+          fab.toggleClass('shrink-to-hidden', progress > 0.5);
+        }); */ 
+      },
+      properties: {
+        title: {
+          type: String,
+          value: 'Mohammed Shahid Khan'
+        }
+      },
+      editProfile: function(){
+        if(Router.currentRoute() === 'home'){
+          Router.go("profile");
+        }else{
+          Router.go("home");
+        }
+        
+      }
+    })
+  </script> 
+</dom-module>
