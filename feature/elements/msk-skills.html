@@ -1,0 +1,193 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
+
+<dom-module id="msk-skills">
+  <template>
+    <style is="custom-style" include="shared-styles">
+      :host{
+        font-family: 'Titillium';
+        font-size: 14px !important;
+
+      }
+      
+      .title{
+        font-size: 42px;
+        color: #fff;
+        padding: 20px 0px 20px 0px;
+      }      
+      .icon-span{
+        padding-right: 10px;
+      }
+      .card-item{
+        margin-top: 15px;
+      }
+      paper-card{
+        margin-right: 25px;
+        margin-top: 25px;
+      }
+      .paper-card-1 .header.paper-card .title-text.paper-card{
+        font-size: 18px;
+      }
+
+      .slideTextUp div:nth-child(2) {
+        top: 100%;
+      }
+
+      .slideTextUp:hover div {
+        -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+        transform: translateY(-100%);
+      }
+
+      .tile {
+        float: left;
+        margin: 0 auto 1%;
+        color: white;
+        font-size: 1.3em;
+        text-align: center;
+        height: 8em;
+        font-weight: 300;
+        overflow: hidden;
+        cursor: pointer;
+        position: relative;
+        background-color: #fff;
+        color: #333;
+        position: relative;
+        -webkit-transition: background-color 0.2s ease-out;
+        transition: background-color 0.2s ease-out;
+      }
+
+      paper-slider{
+        width: 50%;
+        --paper-slider-height: 20px;
+        --paper-slider-disabled-knob-color: blue;
+        --paper-slider-disabled-active-color: lightgreen;
+      }
+      
+      paper-progress {
+        --paper-progress-height: 50px;
+        --paper-progress-transition-duration: 2.8s;
+        --paper-progress-transition-timing-function: ease;
+        --paper-progress-transition-transition-delay: 0s;
+      }
+    </style>
+    <div class="title">
+      {{title}}
+    </div>
+
+    <!--<div class="tile slideTextUp">
+      <div>I’m a Web Developer. I have been developing Web applications & Portals with strong Frontend and Backend experience for over 10 years now. I am currently working for GE Oil & Gas in Oklahoma City, OK. I hold a master degree of Computer Science from the National Institute of Technology, Bhopal, India.  </div>
+      <div>Before falling in love with Frontend Development, I worked with Java/Java EE, Middleware and different databases.</div>
+    </div>
+ -->
+
+
+ <div>Ratings: <span id="ratingsLabel" class="caption"></span></div>
+ <div class="flex-center-justified"> 
+   <paper-slider id="ratings" pin snaps transiting min="0" max="10" max-markers="10" step="1" value="{{ratings}}"></paper-slider>
+ </div>
+
+<div>Progress: <span id="" class="caption"></span></div>
+ <div class="flex-center-justified"> 
+   <paper-progress min="0" max="100" value="90" class="transiting"></paper-progress>
+ </div>
+
+ 
+    
+    <template is="dom-repeat" items="{{skillsArray}}">
+        <paper-card heading="{{item.type}}" elevation="4">
+          <div class="card-content">
+            <div class="card-item">
+              <span class="icon-span"><i class="fa fa-briefcase"></i></span>
+              <span>{{item.skill}}</span>
+            </div>
+            <div class="card-item">
+              <span>{{item.role}}</span>
+            </div>
+            <div class="card-item">
+              <span class="icon-span"><i class="fa fa-users"></i></span>
+              <span>{{item.proficiency}}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+          </div>
+        </paper-card>
+    </template>
+    
+     
+  </template>
+  <script>
+    Polymer({
+      is: 'msk-skills',
+      properties: {
+        title: {
+          type: String,
+          notify: true,
+          value: 'Skills'
+        },
+        ratings: {
+          type: String,
+          notify: true,
+          value: "6",
+          observer: 'ratingValueChanged'
+
+        }
+      },
+      ratingValueChanged: function(value){
+        console.log('ratingValueChanged :' + value);
+        var ratings = this.$.ratings;
+         this.$.ratingsLabel.textContent = ratings.value;
+      },
+      ready: function(){
+        
+      },
+      attached: function(){
+        this.skillsArray = 
+          [
+            {
+              type: 'Frontend',
+              skill: 'Google Polymer, WebComponents',
+              icon: '',
+              proficiency: 'Intermediate'
+            },
+            {
+              type: 'Frameworks/Middleware',
+              skill: 'Angular.js, Angular 2, Node',
+              icon: '',
+              proficiency: 'Intermediate' 
+            },
+            {
+              type: 'Frontend',
+              skill: 'Javascript, HTML5, CSS',
+              icon: '',
+              proficiency: 'Intermediate' 
+            },
+            {
+              type: 'Tools',
+              skill: 'Node, Express, NPM/Bower, Gulp, Github',
+              icon: '',
+              proficiency: 'Intermediate' 
+            },
+            {
+              type: 'Middleware/Backend',
+              skill: 'Java, Java EE, Database',
+              icon: '',
+              proficiency: 'Intermediate' 
+            },
+            {
+              type: 'Testing',
+              skill: 'Chai, Sinon, Jasmine, WebComponents Tester',
+              icon: '',
+              proficiency: 'Intermediate' 
+            }
+          ];
+
+          
+      }
+      
+    });
+  </script>
+</dom-module>

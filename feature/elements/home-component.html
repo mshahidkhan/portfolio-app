@@ -5,103 +5,119 @@
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 
+<link rel="import" href="./msk-home.html">
 <link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
   
 
 
 <dom-module id="home-component">
-   <template>
-   <style is="custom-style">
-     body {
-        margin: 0;
-        font-family: 'Roboto', 'Noto', sans-serif;
-        background-color: #eee;
-      }
-      app-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        color: #fff;
-        background-color: #0f292d;
-        --app-header-background-front-layer: {
-          background-image: url(/images/sky1.jpg);
-          opacity: 0.8;
-        };
-      }
-      paper-icon-button {
-        --paper-icon-button-ink-color: white;
-      }
-      paper-fab {
-        position: absolute;
-        right: 16px;
-        top: 248px;
-        will-change: transform;
-        transition: 0.1s -webkit-transform;
-        transition: 0.1s transform;
-      }
-      paper-fab.shrink-to-hidden {
-        -webkit-transform: scale3d(0, 0, 0);
-        transform: scale3d(0, 0, 0);
-      }
-      app-toolbar.middle {
-        height: 120px;
-      }
-      app-toolbar.bottom {
-        height: 92px;
-      }
-      sample-content {
-        padding-top: 276px;
-      }
+   
+  <style is="custom-style">
+    body {
+      margin: 0;
+      font-family: 'Roboto', 'Noto', sans-serif;
+      background-color: #eee;
+    }
+   
+    .avatar {
+      height: 40px;
+      width: 40px;
+      border-radius: 20px;
+      box-sizing: border-box;
+      background-color: #DDD;
+    }
+    .pad {
+      padding: 0 16px;
+      @apply(--layout-flex);
+      @apply(--layout-vertical);
+    }
+    .primary {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .secondary {
+      font-size: 14px;
+    }
+    .dim {
+      color: gray;
+    }
+    .spacer {
+      @apply(--layout-flex);
+    }
+    #router_mount {
+      display: block;
+      padding: 780px 0px 40px 0px;
+      
+    }
+    @media (max-width: 639px) {
       [main-title] {
-        margin-left: 64px;
-        font-size: 32px;
-        font-weight: 300;
+        left: 85px;
       }
-      [condensed-title] {
-        margin-left: 20px;
-        font-weight: 300;
-      }
-      #router_mount {
-          margin: 350px 20px 40px 20px;
-        }
-   </style>
- 
-      <app-header effects="waterfall resize-title blend-background parallax-background" condenses reveals>
-        <app-toolbar>
-          <paper-icon-button icon="arrow-back"></paper-icon-button>
-          <div condensed-title>
-            M S Khan
-          </div>
-          <paper-icon-button icon="create"></paper-icon-button>
-          <paper-icon-button icon="more-vert"></paper-icon-button>
-        </app-toolbar>
-        <app-toolbar class="middle"></app-toolbar>
-        <app-toolbar class="bottom">
-          <div main-title>{{title}} </div>
-        </app-toolbar>
-      </app-header>
-      
-      <paper-fab icon="star"></paper-fab>
-     
-      <div id="router_mount"></div>
-      
+    }
+  </style>
+  <template>
+    <!--<header-main></header-main>-->
+    <!--<header-profile></header-profile>-->
+    <div id="mskHeaderArea"></div>
+    <div id="router_mount">
+      <msk-home></msk-home>
+    </div>
+    <div id="modalSpace"></div>
   </template>
   <script>
     Polymer({
       is: 'home-component',
-      ready: function(){
-        var fab = document.querySelector('paper-fab');
-        var header = document.querySelector('app-header');
-        window.addEventListener('scroll', function() {
-          var progress = header.getScrollState().progress;
-          fab.toggleClass('shrink-to-hidden', progress > 0.5);
-        });
-      },
       properties: {
         title: {
           type: String,
           value: 'Mohammed Shahid Khan'
+        },
+        isLoggedIn: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          observer: '_changeLogin'
+        }
+      },
+      ready: function(){
+       /*  var fab = document.querySelector('paper-fab');
+        var header = document.querySelector('app-header');
+        window.addEventListener('scroll', function() {
+          var progress = header.getScrollState().progress;
+          fab.toggleClass('shrink-to-hidden', progress > 0.5);
+        }); */ 
+      },
+      attached: function (){
+        this.decideHeaderElement(this.isLoggedIn);
+      },      
+      editProfile: function(){
+        Router.go("profile");
+      },
+      _changeLogin: function(newValue, oldValue){
+        console.log("Login info changed");
+        this.decideHeaderElement(newValue);
+      },
+      decideHeaderElement: function (loginFlag){ 
+        if(loginFlag){
+          var headerDiv = Polymer.dom(this.root).querySelector('#mskHeaderArea');
+          var homeEle =document.createElement('header-profile');
+
+          if(headerDiv.hasChildNodes()){
+            var childNodes = headerDiv.childNodes;
+            Polymer.dom(headerDiv).removeChild(childNodes[0]);
+          }
+          Polymer.dom(headerDiv).appendChild(homeEle);
+          console.log("Logged In");
+        }else{
+          var headerDiv = Polymer.dom(this.root).querySelector('#mskHeaderArea');
+          var homeEle =document.createElement('header-main');
+
+          if(headerDiv.hasChildNodes()){
+            var childNodes = headerDiv.childNodes;
+            Polymer.dom(headerDiv).removeChild(childNodes[0]);
+          }
+          Polymer.dom(headerDiv).appendChild(homeEle);
+          console.log("User is not logged in yet");
         }
       }
     })

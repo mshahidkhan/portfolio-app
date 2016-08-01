@@ -1,0 +1,96 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<dom-module id="msk-experience">
+  <template>
+    <style is="custom-style" include="shared-styles">
+      :host{
+        font-family: 'Titillium';
+        font-size: 14px !important;
+
+      }
+      .title{
+        font-size: 42px;
+        color: #000;
+        padding: 20px 0px 20px 0px;
+      }      
+      .icon-span{
+        padding-right: 10px;
+      }
+      .card-item{
+        margin-top: 15px;
+      }
+      paper-card{
+        margin-right: 25px;
+      }
+    </style>
+
+    <div class="title">
+      {{title}}
+    </div>
+    <template is="dom-repeat" items="{{experienceArray}}">
+        <paper-card heading="{{item.startDate}}-{{item.endDate}}" elevation="4">
+          <div class="card-content ">
+            <div class="card-item">
+              <span class="icon-span"><i class="fa fa-briefcase"></i></span>
+              <span>{{item.company}}</span>
+            </div>
+            <div class="card-item">
+              <span class="icon-span"><i class="fa fa-user"></i></span>
+              <span>{{item.role}}</span>
+            </div>
+            <div class="card-item">
+              <span class="icon-span"><i class="fa fa-users"></i></span>
+              <span>{{item.clients}}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+          </div>
+        </paper-card>
+    </template>
+    
+     
+  </template>
+  <script>
+    Polymer({
+      is: 'msk-experience',
+      properties: {
+        title: {
+          type: String,
+          notify: true,
+          value: 'Experience'
+        }
+      },
+      attached: function(){
+        this.experienceArray = 
+          [
+            {
+              startDate: 'Dec, 2011', 
+              endDate: 'Current',
+              company: 'Tata Consultancy Services',
+              role: 'Senior Frontend/Fullstack Developer',
+              clients: 'GE Oil & Gas, Motorola Mobility',
+              isCurrent: true 
+            },
+            {
+              startDate: 'Aug, 2010', 
+              endDate: 'Nov, 2011',
+              company: 'Hitachi Consulting Ltd',
+              role: 'Portal Consultant/Developer',
+              clients: 'NetApp',
+              isCurrent: false 
+            },
+            {
+              startDate: 'Jun, 2006', 
+              endDate: 'Aug, 2010',
+              company: 'Accenture',
+              role: 'Senior Software Engineer',
+              clients: 'Nokia',
+              isCurrent: false 
+            } 
+          ];
+      }
+      
+    });
+  </script>
+</dom-module>

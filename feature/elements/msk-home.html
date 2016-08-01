@@ -7,7 +7,13 @@
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
+
 <link rel="import" href="./modal-generator.html">
+<link rel="import" href="./msk-skills.html">
+<link rel="import" href="./msk-experience.html">
+<link rel="import" href="./home-about-me.html">
 <dom-module id="msk-home">
     <style>
       :host{
@@ -174,6 +180,7 @@
       }
       paper-button.msk-button{
         padding: 0.9em 2.97em;
+        background-color: #fff !important;
       }
       paper-button.msk-button:hover{
         background-color: #252525 !important;
@@ -209,34 +216,30 @@
         color: #fff;
       }
       paper-fab {
-      margin-left: 10px;
-      margin-right: 10px;
-      margin-bottom: 70px;
-      position: fixed;
-      right: 25px;
-      bottom: 25px;          
-     }
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 70px;
+        position: fixed;
+        right: 25px;
+        bottom: 12px; 
+        color: #00bcd4;
+        background-color: #fff;        
+      }
       
     </style>
 
     <template>
-       <paper-fab icon="favorite" title="heart"></paper-fab>
-      <div class="section-one flex-center-justified" style="height: 400px;">
-        <div class="flex-vertical centerMe">
-          <div class="me">Hi, I'm <span style="color: ">Mohammed Shahid Khan</span></div>
-          <div class="me2">Frontend Developer, Full Stack and Technical Lead</div>
-          <div class="me3">@ Tata Consultancy Servies</div>
-          <div style="margin-top: 40px;">
+      <paper-fab icon="settings" title="heart"></paper-fab>
+      <!--<div class="section-one flex-center-justified" style="padding-top: 10px;">
             <paper-button class="msk-button" raised on-tap="handleTap">Sign In</paper-button>
             <paper-button class="msk-button" raised on-tap="handleTap">Register Me</paper-button>
-          </div>
-        </div>  
-      </div>
+      </div>-->
       <div class="section-two">  
         <div class="flex-center-justified section-two-head centerMe">
           <div style="width:25% ">
             <home-about-me title-me="About Me" footer-content="button">
-              {{aboutMe}}
+              <div>{{aboutMe}}</div>
+              <div>{{aboutMePara2}}</div>
             </home-about-me>
           </div>
           <div class="centerMe" style="width:25%; border-radius: 50%; ">
@@ -251,13 +254,13 @@
       </div>
       <div class="section-skills">
         <div class="flex-center-justified section-three-head">
-          <my-skills></my-skills>
+          <msk-skills></msk-skills>
         </div>
       </div>
       
       <div class="section-experience">
         <div class="flex-center-justified section-three-head">
-          <home-experience></home-experience>
+          <msk-experience></msk-experience>
         </div>
       </div>
       
@@ -282,14 +285,15 @@
               
             },
             ready: function () {
-              this.aboutMe = "Hello, I’m a UI & Front End Developer from Oklahoma City, OK. I hold a master degree of Computer Science from the National Institute of Technology, Bhopal, India. I have been working on Web applications/Portals and developing Frontend, Middleware and Backend for over 10 years now.";
+              this.aboutMe = "I’m a Web Developer. I have been developing Web applications & Portals with strong Frontend and Backend experience for over 10 years now. I am currently working for GE Oil & Gas in Oklahoma City, OK. I hold a master degree of Computer Science from the National Institute of Technology, Bhopal, India. ";
+              this.aboutMePara2 = "Before falling in love with Frontend Development, I worked with Java/Java EE, Middleware and different databases.";
               this.experienceTitle = "Experience";
 
 
               this.headlineOne = ' Hello, I’m a UI & Front End Developer from Oklahoma City, OK. I hold a master degree of Computer Science from the National Institute of Technology, Bhopal, India. I have been working on Web applications/Portals and developing Frontend, Middleware and Backend for over 10 years now.';
               this.subheadOne= " Hello, I’m a UI & Front End Developer from Oklahoma City, OK. I hold a master degree of Computer Science from the National Institute of Technology, Bhopal, India. I have been working on Web applications/Portals and developing Frontend, Middleware and Backend for over 10 years now.";
 
-              this.userPersonalData = {name: 'Mohammed', phone: '012345', email: 'myemail@khanshahid.com'};
+              this.userPersonalData = {name: 'Mohammed Shahid Khan', phone: '-', email: 'myemail@khanshahid.com'};
             },
           populateData: function(e){
               console.log(e.target.id);
@@ -314,105 +318,7 @@
 
 </dom-module>
 
-<dom-module id="home-about-me">
-  <template>
-    <style is="custom-style" include="shared-styles">
-      :host{
-        font-family: 'Titillium';
-        font-size: 16px !important;
-        height: 250px;
-      }
-      hr.horizontal-line {
-        border: 0;
-        height: 1px;
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0));
-        margin: 20px 0px 0px 0px;
-      }
-      .title{
-        font-family: 'Mirza';
-        font-size: 24px;
-      }
-      .card-content{
-        font-family: 'Titillium';
-        text-align: left;
-      }
-      .card-actions{
-        font-weight: 700;
-      }
-      paper-card{
-        --paper-card-background-color: #fafafa !important;
-        font-family: 'Titillium';
-        width: 100%;
-        height: 250px;
-      }
-      paper-button {
-        font-family: 'Titillium';
-      }
 
-    </style>
-    <div class="flex-horizontal">
-      <!--<div class="flexchild title">{{titleMe}} <i class="fa fa-pencil"></i></div>-->
-      <hr class="horizontal-line">
-      <paper-card heading="{{titleMe}}" elevation=0>
-        <div class="card-content">
-          <content></content>
-        </div>
-        <div class="card-actions">
-          <template is="dom-if" if="{{isResumeButton(footerContent)}}">
-            <paper-button elevation="2">Download My Resume</paper-button>
-          </template>
-          <template is="dom-if" if="{{showSocialIcons(footerContent)}}">
-            <div class="flex-horizontal-with-ratios" style="height: 70px;">
-              <paper-item raised><i class="fa fa-twitter"></i></paper-item>
-              <paper-item raised><i class="fa fa-linkedin"></i></paper-item>
-              <paper-item raised><i class="fa fa-github"></i></paper-item>
-              <paper-item raised><i class="fa fa-facebook"></i></paper-item>
-            </div>
-          </template>
-        </div>
-      </paper-card>
-    </div>
-  </template>
-  <script>
-    Polymer({
-      is: 'home-about-me',
-      properties: {
-        titleMe: {
-          type: String,
-          notify: true,
-          value: 'My Story'
-        },
-        aboutMe: {
-          type: String,
-          notify: true,
-          value: ''
-        },
-        footerContent: {
-          type: String,
-          notify: true
-        }
-        
-      },
-      ready: function(){
-        
-      },
-      isResumeButton: function(footerContent){
-        if(footerContent === 'button'){
-          return true;
-        }else{
-          return false;
-        }
-      },
-      showSocialIcons: function(footerContent){
-        if(footerContent === 'social'){
-          return true;
-        }else{
-          return false;
-        }
-      }      
-    });
-  </script>
-</dom-module>
 
 <dom-module id="home-personal-info">
   <template>
@@ -475,209 +381,6 @@
         this.data.name = 'Mohammed Shahid Khan'
         this.data.phone = '01234512345';
         this.data.email = 'shahid.khan@khanshahid.com';
-      }
-      
-    });
-  </script>
-</dom-module>
-
-<dom-module id="home-experience">
-  <template>
-    <style is="custom-style" include="shared-styles">
-      :host{
-        font-family: 'Titillium';
-        font-size: 14px !important;
-
-      }
-      .title{
-        font-size: 42px;
-        color: #000;
-        padding: 20px 0px 20px 0px;
-      }      
-      .icon-span{
-        padding-right: 10px;
-      }
-      .card-item{
-        margin-top: 15px;
-      }
-      paper-card{
-        margin-right: 25px;
-      }
-    </style>
-
-    <div class="title">
-      {{title}}
-    </div>
-    <template is="dom-repeat" items="{{experienceArray}}">
-        <paper-card heading="{{item.startDate}}-{{item.endDate}}" elevation="4">
-          <div class="card-content ">
-            <div class="card-item">
-              <span class="icon-span"><i class="fa fa-briefcase"></i></span>
-              <span>{{item.company}}</span>
-            </div>
-            <div class="card-item">
-              <span class="icon-span"><i class="fa fa-user"></i></span>
-              <span>{{item.role}}</span>
-            </div>
-            <div class="card-item">
-              <span class="icon-span"><i class="fa fa-users"></i></span>
-              <span>{{item.clients}}</span>
-            </div>
-          </div>
-          <div class="card-actions">
-          </div>
-        </paper-card>
-    </template>
-    
-     
-  </template>
-  <script>
-    Polymer({
-      is: 'home-experience',
-      properties: {
-        title: {
-          type: String,
-          notify: true,
-          value: 'Experience'
-        }
-      },
-      attached: function(){
-        this.experienceArray = 
-          [
-            {
-              startDate: 'Dec, 2011', 
-              endDate: 'Current',
-              company: 'Tata Consultancy Services',
-              role: 'Senior Frontend/Fullstack Developer',
-              clients: 'GE Oil & Gas, Motorola Mobility',
-              isCurrent: true 
-            },
-            {
-              startDate: 'Aug, 2010', 
-              endDate: 'Nov, 2011',
-              company: 'Hitachi Consulting Ltd',
-              role: 'Portal Consultant/Developer',
-              clients: 'NetApp',
-              isCurrent: false 
-            },
-            {
-              startDate: 'Jun, 2006', 
-              endDate: 'Aug, 2010',
-              company: 'Accenture',
-              role: 'Senior Software Engineer',
-              clients: 'Nokia',
-              isCurrent: false 
-            } 
-          ];
-      }
-      
-    });
-  </script>
-</dom-module>
-
-<dom-module id="my-skills">
-  <template>
-    <style is="custom-style" include="shared-styles">
-      :host{
-        font-family: 'Titillium';
-        font-size: 14px !important;
-
-      }
-      .title{
-        font-size: 42px;
-        color: #fff;
-        padding: 20px 0px 20px 0px;
-      }      
-      .icon-span{
-        padding-right: 10px;
-      }
-      .card-item{
-        margin-top: 15px;
-      }
-      paper-card{
-        margin-right: 25px;
-        margin-top: 25px;
-      }
-      .paper-card-1 .header.paper-card .title-text.paper-card{
-        font-size: 18px;
-      }
-    </style>
-
-    <div class="title">
-      {{title}}
-    </div>
-    <template is="dom-repeat" items="{{skillsArray}}">
-        <paper-card heading="{{item.type}}" elevation="4">
-          <div class="card-content">
-            <div class="card-item">
-              <span class="icon-span"><i class="fa fa-briefcase"></i></span>
-              <span>{{item.skill}}</span>
-            </div>
-            <div class="card-item">
-              <span>{{item.role}}</span>
-            </div>
-            <div class="card-item">
-              <span class="icon-span"><i class="fa fa-users"></i></span>
-              <span>{{item.proficiency}}</span>
-            </div>
-          </div>
-          <div class="card-actions">
-          </div>
-        </paper-card>
-    </template>
-    
-     
-  </template>
-  <script>
-    Polymer({
-      is: 'my-skills',
-      properties: {
-        title: {
-          type: String,
-          notify: true,
-          value: 'Skills'
-        }
-      },
-      attached: function(){
-        this.skillsArray = 
-          [
-            {
-              type: 'Frontend',
-              skill: 'Google Polymer, WebComponents',
-              icon: '',
-              proficiency: 'Intermediate'
-            },
-            {
-              type: 'Frameworks/Middleware',
-              skill: 'Angular.js, Angular 2, Node',
-              icon: '',
-              proficiency: 'Intermediate' 
-            },
-            {
-              type: 'Frontend',
-              skill: 'Javascript, HTML5, CSS',
-              icon: '',
-              proficiency: 'Intermediate' 
-            },
-            {
-              type: 'Tools',
-              skill: 'Node, Express, NPM/Bower, Gulp, Github',
-              icon: '',
-              proficiency: 'Intermediate' 
-            },
-            {
-              type: 'Middleware/Backend',
-              skill: 'Java, Java EE, Database',
-              icon: '',
-              proficiency: 'Intermediate' 
-            },
-            {
-              type: 'Testing',
-              skill: 'Chai, Sinon, Jasmine, WebComponents Tester',
-              icon: '',
-              proficiency: 'Intermediate' 
-            }
-          ];
       }
       
     });
