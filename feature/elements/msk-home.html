@@ -13,6 +13,7 @@
 <link rel="import" href="./modal-generator.html">
 <link rel="import" href="./msk-skills.html">
 <link rel="import" href="./msk-experience.html">
+<link rel="import" href="./msk-education.html">
 <link rel="import" href="./home-about-me.html">
 <dom-module id="msk-home">
     <style>
@@ -225,7 +226,9 @@
         color: #00bcd4;
         background-color: #fff;        
       }
-      
+      .footer{
+        background: #f0f0f0;
+      }      
     </style>
 
     <template>
@@ -263,16 +266,20 @@
           <msk-experience></msk-experience>
         </div>
       </div>
-      
-      <div class="section-four">        
+      <div class="section-skills">
+        <div class="flex-center-justified section-three-head">
+          <msk-education></msk-education>
+        </div>
+      </div>
+      <div class="section-footer">        
         <div class="flex-center-justified section-four-head centerMe">
           <div style="width:25% "></div>
-          {{headlineOne}}
+          
           <div style="width:25% "></div>
         </div>
         <div class="flex-center-justified section-four-subhead centerMe">
             <div style="width:25% "></div>
-            {{subheadOne}}
+            Copyright - www.khanshahid.com
             <div style="width:25% "></div>
         </div>      
       </div>

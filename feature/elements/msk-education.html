@@ -4,7 +4,7 @@
 <link rel="import" href="../../bower_components/paper-progress/paper-progress.html">
 <link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
 
-<dom-module id="msk-skills">
+<dom-module id="msk-education">
   <template>
     <style is="custom-style" include="shared-styles">
       :host{
@@ -21,25 +21,24 @@
       .icon-span{
         padding-right: 10px;
       }
-      .card-item{
-        margin-top: 15px;
-      }
+      
       paper-card{
-        width: 16em;
-        height: 12em;
+        width: 20em;
+        height: 24em;
         margin-right: 25px;
         margin-top: 25px;
         --paper-card-header-text: {
           font-size: 20px;
-          background-color: #00bcd4;
+          background-color: #fff;
           color: #00bcd4 !important;
         }
         --paper-card-content: {
           background-color: #fafafa !important;
-          
+          font-size: 120px;
         }
         --paper-card-actions: {
           font-size: 16px;
+          font-weight: 300;
           color: #ff4081 !important;
         }
       }
@@ -95,73 +94,40 @@
         @apply(--layout-wrap);
         width: 200px;
       }
+      .card-item > i{
+        text-align: center;
+      }
     </style>
     <div class="title">
       {{title}}
     </div>
-
-    <!--<div class="tile slideTextUp">
-      <div>I’m a Web Developer. I have been developing Web applications & Portals with strong Frontend and Backend experience for over 10 years now. I am currently working for GE Oil & Gas in Oklahoma City, OK. I hold a master degree of Computer Science from the National Institute of Technology, Bhopal, India.  </div>
-      <div>Before falling in love with Frontend Development, I worked with Java/Java EE, Middleware and different databases.</div>
-    </div>
- -->
-
-  <!--<div class="flex-vertical-justified" >
-    <ul>
-    <template is="dom-repeat" items="{{skillsArray}}">
-       <li>{{item.skill}} 
-         <paper-slider id="{{item.skill}}" pin class="transiting" min="0" max="100" max-markers="100" step="10" value="{{item.value}}"></paper-slider>
-       </li>
-    </template>
-  </div>-->
- <!--<div>Ratings: <span id="ratingsLabel" class="caption"></span></div>
- <div class="flex-center-justified"> 
-   <paper-slider id="ratings" pin snaps transiting min="0" max="10" max-markers="10" step="1" value="{{ratings}}"></paper-slider>
- </div>
-
-<div>Progress: <span id="" class="caption"></span></div>
- <div class="flex-center-justified"> 
-   <paper-progress min="0" max="100" value="90" class="transiting"></paper-progress>
- </div>-->
-
- 
-    
-    <template is="dom-repeat" items="{{skillsArray}}">
-        <paper-card heading="{{item.type}}" elevation="4">
-          <div class="card-content">
+    <template is="dom-repeat" items="{{educationArray}}">
+        <paper-card heading="{{item.timeline}}" elevation="4">
+          <div class="card-content flex-center-justified">
             <div class="card-item">
-              <span class="icon-span"><i class="fa fa-briefcase"></i></span>
-              <span>{{item.skill}}</span>
-            </div>
-            <div class="card-item">
-              <span>{{item.role}}</span>
-            </div>
-            <div class="card-item">
-              
+              <i class="fa fa-graduation-cap"></i>
             </div>
           </div>
           <div class="card-actions">
-            <span class="icon-span"><i class="fa fa-bar-chart"></i></span>
-            <span>{{item.proficiency}}</span>
-            <div class="flex-center-justified"> 
-   <paper-slider id="ratings" snaps transiting min="0" max="10" max-markers="10" step="1" value="{{ratings}}"></paper-slider>
- </div>  
+            <div>
+              <span>{{item.degree}}</span>  
             </div>
-
+            <div style="color: #000; padding-top: 10px;">
+              <span>{{item.institute}}</span>  
+            </div>
           </div>
+
         </paper-card>
     </template>
-    
-     
   </template>
   <script>
     Polymer({
-      is: 'msk-skills',
+      is: 'msk-education',
       properties: {
         title: {
           type: String,
           notify: true,
-          value: 'Skills'
+          value: 'Education'
         },
         ratings: {
           type: String,
@@ -182,48 +148,18 @@
         
       },
       attached: function(){
-        this.skillsArray = 
+        this.educationArray = 
           [
             {
-              type: ' ',
-              skill: 'Polymer, WebComponents',
-              icon: '',
-              value: '60',
+              timeline: '2003-2006',
+              degree: 'Masters of Computer Application',
+              institute: 'NIT/REC, Bhopal, India',
               proficiency: 'Intermediate'
             },
             {
-              type: ' ',
-              skill: 'Angular, Angular 2',
-              icon: '',
-              value: '70',
-              proficiency: 'Intermediate' 
-            },
-            {
-              type: ' ',
-              skill: 'Javascript, HTML5/CSS',
-              icon: '',
-              value: '75',
-              proficiency: 'Intermediate' 
-            },
-            {
-              type: ' ',
-              skill: 'Node, Express',
-              icon: '',
-              value: '80',
-              proficiency: 'Intermediate' 
-            },
-            {
-              type: ' ',
-              skill: 'Java, Java EE, Database',
-              icon: '',
-              value: '85',
-              proficiency: 'Intermediate' 
-            },
-            {
-              type: ' ',
-              skill: 'Chai, WebComponents Tester',
-              icon: '',
-              value: '70',
+              timeline: '1999-2003 ',
+              degree: 'Bachelor of Science',
+              institute: 'DAVV, Indore, India',
               proficiency: 'Intermediate' 
             }
           ];
