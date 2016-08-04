@@ -31,8 +31,8 @@
         margin-top: 25px;
         --paper-card-header-text: {
           font-size: 20px;
-          background-color: #00bcd4;
-          color: #00bcd4 !important;
+          background-color: var(--msk-text-primary-color, '#00bcd4');
+          color: var(--msk-primary-color, '#00bcd4');
         }
         --paper-card-content: {
           background-color: #fafafa !important;
@@ -76,12 +76,13 @@
       }
 
       paper-slider{
-        width: 50%;
+        width: 80%;
         --paper-slider-height: 10px;
-        --paper-slider-disabled-knob-color: #ff4081;
-        --paper-slider-disabled-active-color: #ff4081;
-        --paper-slider-knob-color: #ff4081;
-        --paper-slider-active-color: #ff4081;
+        --paper-slider-active-color: var(--msk-primary-color, '#00bcd4');
+        --paper-slider-disabled-active-color: var(--msk-primary-color, '#00bcd4');
+        --paper-slider-knob-color: var(--msk-secondary-color, '#00bcd4');
+        --paper-slider-disabled-knob-color: var(--msk-secondary-color, '#00bcd4');
+        
       }
       
       paper-progress {
@@ -136,23 +137,17 @@
             <div class="card-item">
               <span>{{item.role}}</span>
             </div>
-            <div class="card-item">
-              
-            </div>
+            
           </div>
           <div class="card-actions">
             <span class="icon-span"><i class="fa fa-bar-chart"></i></span>
             <span>{{item.proficiency}}</span>
             <div class="flex-center-justified"> 
-   <paper-slider id="ratings" snaps transiting min="0" max="10" max-markers="10" step="1" value="{{ratings}}"></paper-slider>
- </div>  
-            </div>
-
+              <paper-slider id="ratings" pin transiting min="0" max="10" max-markers="10" value="{{ratings}}" disabled></paper-slider>
+            </div>  
           </div>
         </paper-card>
     </template>
-    
-     
   </template>
   <script>
     Polymer({
@@ -221,7 +216,7 @@
             },
             {
               type: ' ',
-              skill: 'Chai, WebComponents Tester',
+              skill: 'Chai, WCT',
               icon: '',
               value: '70',
               proficiency: 'Intermediate' 

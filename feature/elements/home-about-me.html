@@ -5,11 +5,11 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <dom-module id="home-about-me">
-  <template>
-    <style is="custom-style" include="shared-styles">
+  
+    <style include="shared-styles">
       :host{
         font-family: 'Titillium';
-        font-size: 16px !important;
+        font-size: 16px;
         height: 250px;
       }
       hr.horizontal-line {
@@ -21,23 +21,24 @@
       .title{
         font-family: 'Mirza';
         font-size: 24px;
-        color: #00bcd4;
+        color: var(--msk-primary-color);
       }
       .card-content{
         font-family: 'Titillium';
         text-align: left;
+        color: var(--msk-text-special-color);
       }
       .card-actions{
         font-weight: 700;
       }
       paper-card{
-        --paper-card-background-color: #fafafa !important;
+        --paper-card-background-color: #fafafa;
         font-family: 'Titillium';
         width: 100%;
         height: 250px;
-        --paper-card-header-color: #00bcd4;
-        --paper-card-actions{
-          color: #00bcd4;
+        --paper-card-header-color: var(--msk-primary-color);
+        --paper-card-actions: {
+          color: var(--msk-secondary-color);
         }
       }
       
@@ -46,6 +47,7 @@
       }
 
     </style>
+    <template>
     <div class="flex-horizontal">
       <!--<div class="flexchild title">{{titleMe}} <i class="fa fa-pencil"></i></div>-->
       <hr class="horizontal-line">

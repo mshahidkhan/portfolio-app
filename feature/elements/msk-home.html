@@ -7,6 +7,7 @@
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../../bower_components/paper-progress/paper-progress.html">
 <link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
 
@@ -21,6 +22,14 @@
         font-size: 16px !important;
         padding-right: 50px;
         padding-left: 50px;
+        --msk-primary-color:  #00bcd4;
+        --msk-secondary-color: #ff4081;
+        --msk-tertiary-color: #fafafa;
+        --msk-disabled-color: #ff4081;
+        --msk-background-color: #ff4081;
+        --msk-text-primary-color: #fff;
+        --msk-text-secondary-color: #000;
+        --msk-text-special-color: #727272;
       }
         .msk-section {
             display: block;
@@ -117,7 +126,7 @@
         }
       .section-skills{
         font-family: 'Mirza';
-        background-color: #00bcd4 !important;
+        background-color: var(--msk-primary-color, '#00bcd4');
       }
       .section-two{
         font-family: 'Lato';
@@ -135,13 +144,13 @@
       }
       .section-one{
         font-family: 'Mirza';
-        background-color: #00bcd4 !important;
+        background-color: var(--msk-primary-color, '#00bcd4');
         padding-bottom: 10px;
         @apply --shadow-elevation-2dp;
       } 
       .section-three{
         font-family: 'Mirza';
-        background-color: #00bcd4 !important;
+        background-color: var(--msk-primary-color, '#00bcd4');
         padding-bottom: 50px;
         @apply --shadow-elevation-2dp;
       }
@@ -223,20 +232,62 @@
         position: fixed;
         right: 25px;
         bottom: 12px; 
-        color: #00bcd4;
+        color: var(--msk-primary-color);
         background-color: #fff;        
+      }
+      paper-toast {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 70px;
+        position: fixed;
+        right: 25px;
+        bottom: 12px; 
+        color: var(--msk-primary-color);
+        background-color: #fff;  
+        height: 150px;
+        max-width: 400px;      
       }
       .footer{
         background: #f0f0f0;
-      }      
+      }
+      .color-selection-bar{
+        height: 25px;
+        width: 25px;
+      }   
     </style>
 
     <template>
-      <paper-fab icon="settings" title="heart"></paper-fab>
-      <!--<div class="section-one flex-center-justified" style="padding-top: 10px;">
-            <paper-button class="msk-button" raised on-tap="handleTap">Sign In</paper-button>
-            <paper-button class="msk-button" raised on-tap="handleTap">Register Me</paper-button>
-      </div>-->
+      <paper-toast id="toast1" duration="0" text="">
+        <div style="float: right;"><paper-button onclick="toast1.toggle()" class="yellow-button">Close now!</paper-button></div>
+        <div>
+          <span>Choose primary color -</span>
+          <div class="flex-horizontal-with-ratios">
+            <a on-tap="selectColor" class="color-selection-bar" style="background-color:#00bcd4; color:#00bcd4;" id="#00bcd4"></a>
+            <a on-tap="selectColor" class="color-selection-bar" style="background-color:#ff4081; color:#ff4081;" id="#ff4081"></a>
+            <a on-tap="selectColor" class="color-selection-bar" style="background-color:#C043D5; color:#C043D5;" id="#C043D5"></a>
+            <a on-tap="selectColor" class="color-selection-bar" style="background-color:#73D077; color:#73D077;" id="#73D077"></a>
+            <a on-tap="selectColor" class="color-selection-bar" style="background-color:#1ABBAC; color:#1ABBAC;" id="#1ABBAC"></a>
+            <a on-tap="selectColor" class="color-selection-bar" style="background-color:#EAB82E; color:#EAB82E;" id="#EAB82E"></a>
+            <a on-tap="selectColor" class="color-selection-bar" style="background-color:#799CAC; color:#799CAC;" id="#799CAC"></a>  
+          </div>
+        </div> 
+        <div>
+          <span>Choose Secondary color -</span>
+          <div class="flex-horizontal-with-ratios">
+            <a on-tap="selectSecondaryColor" class="color-selection-bar" style="background-color:#00bcd4; color:#00bcd4;" id="#00bcd4"></a>
+            <a on-tap="selectSecondaryColor" class="color-selection-bar" style="background-color:#ff4081; color:#ff4081;" id="#ff4081"></a>
+            <a on-tap="selectSecondaryColor" class="color-selection-bar" style="background-color:#C043D5; color:#C043D5;" id="#C043D5"></a>
+            <a on-tap="selectSecondaryColor" class="color-selection-bar" style="background-color:#73D077; color:#73D077;" id="#73D077"></a>
+            <a on-tap="selectSecondaryColor" class="color-selection-bar" style="background-color:#1ABBAC; color:#1ABBAC;" id="#1ABBAC"></a>
+            <a on-tap="selectSecondaryColor" class="color-selection-bar" style="background-color:#EAB82E; color:#EAB82E;" id="#EAB82E"></a>
+            <a on-tap="selectSecondaryColor" class="color-selection-bar" style="background-color:#799CAC; color:#799CAC;" id="#799CAC"></a>  
+          </div>
+        </div>
+        <paper-button onclick="toast1.toggle()" class="yellow-button">Close now!</paper-button>
+      </paper-toast>
+      <paper-fab icon="settings" title="Settings" onclick="toast1.open()"></paper-fab>
+      
+
       <div class="section-two">  
         <div class="flex-center-justified section-two-head centerMe">
           <div style="width:25% ">
@@ -319,7 +370,20 @@
               Polymer.dom(modalDiv).removeChild(childNodes[0]);  
             }        
             Polymer.dom(modalDiv).appendChild(modalGen);
-          }
+          },
+          selectColor: function(e,color) {
+            //var color="";
+            //console.log('Selected Color :'+color);
+            this.customStyle['--msk-primary-color'] = e.target.id;
+            this.updateStyles();
+          },
+          
+          selectSecondaryColor: function(e,color) {
+            //var color="";
+            //console.log('Selected Color :'+color);
+            this.customStyle['--msk-secondary-color'] = e.target.id;
+            this.updateStyles();
+          }         
         });
     </script>
 
@@ -333,6 +397,7 @@
       :host{
         font-family: 'Titillium';
         font-size: 16px !important;
+        color: 
       }
       .my-div{
         color: rgb(114, 114, 114);
@@ -389,7 +454,6 @@
         this.data.phone = '01234512345';
         this.data.email = 'shahid.khan@khanshahid.com';
       }
-      
     });
   </script>
 </dom-module>
